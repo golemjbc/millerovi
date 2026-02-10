@@ -1,0 +1,614 @@
+// JavaScript Document
+
+				
+function getObjectPointer(oId){
+	if (document.getElementById){
+		pointer = document.getElementById(oId);
+	}else if (document.all) {
+		pointer = document.all[oId];
+	}else if (document.layers){
+		pointer = document.layers[oId];
+	}
+	return pointer;				
+}
+				
+function realy(otazka,linkOk,linkNo){
+	// zobrazi dialogove okno s volbou odpovedi a/n
+	// otazka = text otazky
+	// linkOK = adresa kam ma skocit pokud odpovi Ano
+	// linkNo = adresa kam ma skocit, pokud odpovi ne
+	if (confirm(otazka)){
+		window.location.href = linkOk;
+	}else{
+		if (linkNo.length>0){
+			window.location.href = linkNo;
+		}
+	}
+}
+
+function swapImage(obj,source){
+  // zameni obrazky
+  // obj je odkaz na objekt typu Image v HTML kodu
+  // source je zdroj obrazku, kterym se bude nahrazovat
+  obj.src = source;
+}
+
+function checkAll(obj){
+	// zaskrtne vsechny checkboxy ve formulari predanem jako odkaz na jeho objekt
+  for (x=0;x<obj.elements.length;x++){
+		if (obj.elements[x].type=="checkbox"){
+			obj.elements[x].checked = true;
+		}
+	}
+}
+function uncheckAll(obj){
+	// odskrtne vsechny checkboxy ve formulari predanem jako odkaz na jeho objekt
+	for (x=0;x<obj.elements.length;x++){
+		if (obj.elements[x].type=="checkbox"){
+			obj.elements[x].checked = false;
+		}
+	}
+}
+
+function checkAllSelect(obj,name){
+	// zaskrtne vsechny checkboxy ve formulari predanem jako odkaz na jeho objekt
+  for (x=0;x<obj.elements.length;x++){
+		if (obj.elements[x].type=="checkbox" && obj.elements[x].name==name){
+			obj.elements[x].checked = true;
+		}
+	}
+}
+function uncheckAllSelect(obj,name){
+	// odskrtne vsechny checkboxy ve formulari predanem jako odkaz na jeho objekt
+	for (x=0;x<obj.elements.length;x++){
+		if (obj.elements[x].type=="checkbox" && obj.elements[x].name==name){
+      obj.elements[x].checked = false;
+		}
+	}
+}
+
+
+function rewriteName(str){
+  str = str.toLocaleLowerCase();
+  //str = str.toLowerCase()
+  c = str.length;
+  for (x=0;x<c;x++){
+    
+    str = str.replace(/ě/i,"e");
+    str = str.replace(/š/i,"s");
+    str = str.replace(/č/i,"c");
+    str = str.replace(/ř/i,"r");
+    str = str.replace(/ž/i,"z");
+    str = str.replace(/ý/i,"y");
+    str = str.replace(/á/i,"a");
+    str = str.replace(/í/i,"i");
+    str = str.replace(/é/i,"e");
+    str = str.replace(/ú/i,"u");
+    str = str.replace(/ů/i,"u");
+    str = str.replace(/ť/i,"t");
+    str = str.replace(/ď/i,"d");
+    str = str.replace(/ü/i,"u");
+    str = str.replace(/ë/i,"e");
+    str = str.replace(/ö/i,"o");
+    str = str.replace(/ó/i,"o");
+    str = str.replace(/ /i,"-");
+    str = str.replace(/\?/i,"");
+    str = str.replace(/\!/i,"");
+    str = str.replace(/\./i,"-");
+    str = str.replace(/\@/i,"");
+    str = str.replace(/\#/i,"");
+    str = str.replace(/\$/i,"");
+    str = str.replace(/\%/i,"");
+    str = str.replace(/\^/i,"");
+    str = str.replace(/\&/i,"");
+    str = str.replace(/\*/i,"");
+    str = str.replace(/\(/i,"-");
+    str = str.replace(/\)/i,"-");
+    str = str.replace(/\//i,"-");
+  }
+  return str;
+}
+
+function createValidLoginName(text){
+  // vyvori z promenne text platne uzivatelske logovaci jmeno
+  text = rewriteName(text);
+  return text; 
+}
+
+function generateRandomPassword(delka){
+  // vygeneruje nahodne heslo
+  heslo = "";
+  for (x=0;x<delka;x++){
+   nahoda = Math.floor(Math.random()*10);
+   switch(nahoda) {
+      case 1 : heslo = heslo + "a"; break;
+      case 2 : heslo = heslo + "b"; break;
+      case 3 : heslo = heslo + "c"; break;
+      case 4 : heslo = heslo + "d"; break;
+      case 5 : heslo = heslo + "e"; break;
+      case 6 : heslo = heslo + "f"; break;
+      case 7 : heslo = heslo + "1"; break;
+      case 8 : heslo = heslo + "2"; break;
+      case 9 : heslo = heslo + "3"; break;      
+    }
+  }
+  return heslo;
+}
+
+function getSvatek(){
+  today = new Date();
+  den=today.getDate();
+  mesic=(today.getMonth()+1);
+
+  if (mesic==1) {
+  if (den==01) return "Nový rok";
+  if (den==02) return "Karina";
+  if (den==03) return "Radmila";
+  if (den==04) return "Diana";
+  if (den==05) return "Dalimil";
+  if (den==06) return "Tři králové";
+  if (den==07) return "Vilma";
+  if (den==08) return "Čestmír";
+  if (den==09) return "Vladan";
+  if (den==10) return "Břetislav";
+  if (den==11) return "Bohdana";
+  if (den==12) return "Pravoslav";
+  if (den==13) return "Edita";
+  if (den==14) return "Radovan";
+  if (den==15) return "Alice";
+  if (den==16) return "Ctirad";
+  if (den==17) return "Drahoslav";
+  if (den==18) return "Vladislav";
+  if (den==19) return "Doubravka";
+  if (den==20) return "Ilona";
+  if (den==21) return "Běla";
+  if (den==22) return "Slavomír";
+  if (den==23) return "Zdeněk";
+  if (den==24) return "Milena";
+  if (den==25) return "Miloš";
+  if (den==26) return "Zora";
+  if (den==27) return "Ingrid";
+  if (den==28) return "Otýlie";
+  if (den==29) return "Zdislava";
+  if (den==30) return "Robin";
+  if (den==31) return "Marika";
+  }
+  if (mesic==2) {
+  if (den==01) return "Hynek";
+  if (den==02) return "Nela";
+  if (den==03) return "Blažej";
+  if (den==04) return "Jarmila";
+  if (den==05) return "Dobromila";
+  if (den==06) return "Vanda";
+  if (den==07) return "Veronika";
+  if (den==08) return "Milada";
+  if (den==09) return "Apolena";
+  if (den==10) return "Mojmír";
+  if (den==11) return "Božena";
+  if (den==12) return "Slavěna";
+  if (den==13) return "Věnceslav";
+  if (den==14) return "Valentýn";
+  if (den==15) return "Jiřina";
+  if (den==16) return "Ljuba";
+  if (den==17) return "Miloslava";
+  if (den==18) return "Gizela";
+  if (den==19) return "Patrik";
+  if (den==20) return "Oldřich";
+  if (den==21) return "Lenka";
+  if (den==22) return "Petr";
+  if (den==23) return "Svatopluk";
+  if (den==24) return "Matěj";
+  if (den==25) return "Liliana";
+  if (den==26) return "Dorota";
+  if (den==27) return "Alexandr";
+  if (den==28) return "Lumír";
+  if (den==29) return "";
+  }
+  if (mesic==3) {
+  if (den==01) return "Bedřich";
+  if (den==02) return "Anežka";
+  if (den==03) return "Kamil";
+  if (den==04) return "Stela";
+  if (den==05) return "Kazimir";
+  if (den==06) return "Miroslav";
+  if (den==07) return "Tomáš";
+  if (den==08) return "Gabriela";
+  if (den==09) return "Františka";
+  if (den==10) return "Viktorie";
+  if (den==11) return "Anděla";
+  if (den==12) return "Řehoř";
+  if (den==13) return "Růžena";
+  if (den==14) return "Růt a matylda";
+  if (den==15) return "Ida";
+  if (den==16) return "Elena a herbert";
+  if (den==17) return "Vlastimil";
+  if (den==18) return "Eduard";
+  if (den==19) return "Josef";
+  if (den==20) return "Světlana";
+  if (den==21) return "Radek";
+  if (den==22) return "Leona";
+  if (den==23) return "Ivona";
+  if (den==24) return "Gabriel";
+  if (den==25) return "Marian";
+  if (den==26) return "Emanuel";
+  if (den==27) return "Dita";
+  if (den==28) return "Soňa";
+  if (den==29) return "Taťána";
+  if (den==30) return "Arnošt";
+  if (den==31) return "Kvido";
+  }
+  if (mesic==4) {
+  if (den==01) return "Hugo";
+  if (den==02) return "Erika";
+  if (den==03) return "Richard";
+  if (den==04) return "Ivana";
+  if (den==05) return "Miroslava";
+  if (den==06) return "Vendula";
+  if (den==07) return "Heřman a Hermína";
+  if (den==08) return "Ema";
+  if (den==09) return "Dušan";
+  if (den==10) return "Darja";
+  if (den==11) return "Izabela";
+  if (den==12) return "Julius";
+  if (den==13) return "Aleš";
+  if (den==14) return "Vincenc";
+  if (den==15) return "Anastázie";
+  if (den==16) return "Irena";
+  if (den==17) return "Rudolf";
+  if (den==18) return "Valérie";
+  if (den==19) return "Rostislav";
+  if (den==20) return "Marcela";
+  if (den==21) return "Alexandra";
+  if (den==22) return "Evženie";
+  if (den==23) return "Vojtěch";
+  if (den==24) return "Jiří";
+  if (den==25) return "Marek";
+  if (den==26) return "Oto";
+  if (den==27) return "Jaroslav";
+  if (den==28) return "Vlastislav";
+  if (den==29) return "Robert";
+  if (den==30) return "Blahoslav";
+  }
+  if (mesic==5) {
+  if (den==01) return "všichni pracující";
+  if (den==02) return "Zikmund";
+  if (den==03) return "Alexej";
+  if (den==04) return "Květoslav";
+  if (den==05) return "Klaudi";
+  if (den==06) return "Radoslav";
+  if (den==07) return "Stanislav";
+  if (den==08) return "všichni osvobození";
+  if (den==09) return "Ctibor";
+  if (den==10) return "Blažena";
+  if (den==11) return "Svatava";
+  if (den==12) return "Pankrác";
+  if (den==13) return "Servác";
+  if (den==14) return "Bonifác";
+  if (den==15) return "Žofie";
+  if (den==16) return "Přemysl";
+  if (den==17) return "Aneta";
+  if (den==18) return "Nataša";
+  if (den==19) return "Ivo";
+  if (den==20) return "Zbyšek";
+  if (den==21) return "Monika";
+  if (den==22) return "Emil";
+  if (den==23) return "Vladimír";
+  if (den==24) return "Jana";
+  if (den==25) return "Viola";
+  if (den==26) return "Filip";
+  if (den==27) return "Valdemar";
+  if (den==28) return "Vilém";
+  if (den==29) return "Maxmilián";
+  if (den==30) return "Ferdinand";
+  if (den==31) return "Kamila";
+  }
+  if (mesic==6) {
+  if (den==01) return "Laura";
+  if (den==02) return "Jarmil";
+  if (den==03) return "Tamara";
+  if (den==04) return "Dalibor";
+  if (den==05) return "Dobroslav";
+  if (den==06) return "Norbert";
+  if (den==07) return "Iveta a Slavoj";
+  if (den==08) return "Medard";
+  if (den==09) return "Stanislava";
+  if (den==10) return "Gita";
+  if (den==11) return "Bruno";
+  if (den==12) return "Antonie";
+  if (den==13) return "Antonín";
+  if (den==14) return "Roland";
+  if (den==15) return "Vít";
+  if (den==16) return "Zbyněk";
+  if (den==17) return "Adolf";
+  if (den==18) return "Milan";
+  if (den==19) return "Leoš";
+  if (den==20) return "Květa";
+  if (den==21) return "Alois";
+  if (den==22) return "Pavla";
+  if (den==23) return "Zdeňka";
+  if (den==24) return "Jan";
+  if (den==25) return "Ivan";
+  if (den==26) return "Adriana";
+  if (den==27) return "Ladislav";
+  if (den==28) return "Lubomír";
+  if (den==29) return "Petr a Pavel";
+  if (den==30) return "Šárka";
+  }
+  if (mesic==7) {
+  if (den==01) return "Jaroslava";
+  if (den==02) return "Patricie";
+  if (den==03) return "Radomír";
+  if (den==04) return "Prokop";
+  if (den==05) return "Cyril a Metoděj";
+  if (den==06) return "Jan Hus";
+  if (den==07) return "Bohuslava";
+  if (den==08) return "Nora";
+  if (den==09) return "Drahoslava";
+  if (den==10) return "Libuše a Amálie";
+  if (den==11) return "Olga";
+  if (den==12) return "Bořek";
+  if (den==13) return "Markéta";
+  if (den==14) return "Karolína";
+  if (den==15) return "Jindřich";
+  if (den==16) return "Luboš";
+  if (den==17) return "Martina";
+  if (den==18) return "Drahomíra";
+  if (den==19) return "Čeněk";
+  if (den==20) return "Ilja";
+  if (den==21) return "Vítězslav";
+  if (den==22) return "Magdaléna";
+  if (den==23) return "Libor";
+  if (den==24) return "Kristýna";
+  if (den==25) return "Jakub";
+  if (den==26) return "Anna";
+  if (den==27) return "Věroslav";
+  if (den==28) return "Viktor";
+  if (den==29) return "Marta";
+  if (den==30) return "Bořivoj";
+  if (den==31) return "Ignác";
+  }
+  if (mesic==8) {
+  if (den==01) return "Oskar";
+  if (den==02) return "Gustav";
+  if (den==03) return "Miluše";
+  if (den==04) return "Dominik";
+  if (den==05) return "Kristian";
+  if (den==06) return "Oldřiška";
+  if (den==07) return "Lada";
+  if (den==08) return "Soběslav";
+  if (den==09) return "Roman";
+  if (den==10) return "Vavřinec";
+  if (den==11) return "Zuzana";
+  if (den==12) return "Klára";
+  if (den==13) return "Alena";
+  if (den==14) return "Alan";
+  if (den==15) return "Hana";
+  if (den==16) return "Jáchym";
+  if (den==17) return "Petra";
+  if (den==18) return "Helena";
+  if (den==19) return "Ludvík";
+  if (den==20) return "Bernard";
+  if (den==21) return "Johana";
+  if (den==22) return "Bohuslav";
+  if (den==23) return "Sandra";
+  if (den==24) return "Bartoloměj";
+  if (den==25) return "Radim";
+  if (den==26) return "Luděk";
+  if (den==27) return "Otakar";
+  if (den==28) return "Augustýn";
+  if (den==29) return "Evelína";
+  if (den==30) return "Vladěna";
+  if (den==31) return "Pavlína";
+  }
+  if (mesic==9) {
+  if (den==01) return "Linda a Samuel";
+  if (den==02) return "Adéla";
+  if (den==03) return "Bronislav";
+  if (den==04) return "Jindřiška";
+  if (den==05) return "Boris";
+  if (den==06) return "Boleslav";
+  if (den==07) return "Regína";
+  if (den==08) return "Mariana";
+  if (den==09) return "Daniela";
+  if (den==10) return "Irma";
+  if (den==11) return "Denisa";
+  if (den==12) return "Marie";
+  if (den==13) return "Lubor";
+  if (den==14) return "Radka";
+  if (den==15) return "Jolana";
+  if (den==16) return "Ludmila";
+  if (den==17) return "Naděžda";
+  if (den==18) return "Kryštof";
+  if (den==19) return "Zita";
+  if (den==20) return "Oleg";
+  if (den==21) return "Matouš";
+  if (den==22) return "Darina";
+  if (den==23) return "Berta";
+  if (den==24) return "Jaromír";
+  if (den==25) return "Zlata";
+  if (den==26) return "Andrea";
+  if (den==27) return "Jonáš";
+  if (den==28) return "Václav";
+  if (den==29) return "Michal";
+  if (den==30) return "Jeroným";
+  }
+  if (mesic==10) {
+  if (den==01) return "Igor";
+  if (den==02) return "Olivie a Oliver";
+  if (den==03) return "Bohumil";
+  if (den==04) return "František";
+  if (den==05) return "Eliška";
+  if (den==06) return "Hanuš";
+  if (den==07) return "Justýna";
+  if (den==08) return "Věra";
+  if (den==09) return "Štefan a Sára";
+  if (den==10) return "Marina";
+  if (den==11) return "Andrej";
+  if (den==12) return "Marcel";
+  if (den==13) return "Renáta";
+  if (den==14) return "Agáta";
+  if (den==15) return "Tereza";
+  if (den==16) return "Havel";
+  if (den==17) return "Hedvika";
+  if (den==18) return "Lukáš";
+  if (den==19) return "Michaela";
+  if (den==20) return "Vendelín";
+  if (den==21) return "Brigita";
+  if (den==22) return "Sabina";
+  if (den==23) return "Teodor";
+  if (den==24) return "Nina";
+  if (den==25) return "Beáta";
+  if (den==26) return "Erik";
+  if (den==27) return "Šarlota,Zoja,Zoe";
+  if (den==28) return "státní svátek";
+  if (den==29) return "Silvie";
+  if (den==30) return "Tadeáš";
+  if (den==31) return "Štěpánka";
+  }
+  if (mesic==11) {
+  if (den==01) return "Felix";
+  if (den==02) return "Dušičky";
+  if (den==03) return "Hubert";
+  if (den==04) return "Karel";
+  if (den==05) return "Miriam";
+  if (den==06) return "Liběna";
+  if (den==07) return "Saskie";
+  if (den==08) return "Bohumír";
+  if (den==09) return "Bohdan";
+  if (den==10) return "Evžen";
+  if (den==11) return "Martin";
+  if (den==12) return "Benedikt";
+  if (den==13) return "Tibor";
+  if (den==14) return "Sáva";
+  if (den==15) return "Leopold";
+  if (den==16) return "Otmar";
+  if (den==17) return "Mahulena";
+  if (den==18) return "Romana";
+  if (den==19) return "Alžběta";
+  if (den==20) return "Nikola";
+  if (den==21) return "Albert";
+  if (den==22) return "Cecílie";
+  if (den==23) return "Klement";
+  if (den==24) return "Emílie";
+  if (den==25) return "Kateřina";
+  if (den==26) return "Artur";
+  if (den==27) return "Xenie";
+  if (den==28) return "René";
+  if (den==29) return "Zina";
+  if (den==30) return "Ondřej";
+  }
+  if (mesic==12) {
+  if (den==01) return "Iva";
+  if (den==02) return "Blanka";
+  if (den==03) return "Svatoslav";
+  if (den==04) return "Barbora";
+  if (den==05) return "Jitka";
+  if (den==06) return "Mikuláš a pozor na čerty!";
+  if (den==07) return "Ambrož a Aenjamín";
+  if (den==08) return "Květoslava";
+  if (den==09) return "Vratislav";
+  if (den==10) return "Julie";
+  if (den==11) return "Dana";
+  if (den==12) return "Simona";
+  if (den==13) return "Lucie";
+  if (den==14) return "Lýdie";
+  if (den==15) return "Radana a Radan";
+  if (den==16) return "Albína";
+  if (den==17) return "Daniel";
+  if (den==18) return "Miloslav";
+  if (den==19) return "Ester";
+  if (den==20) return "Dagmar";
+  if (den==21) return "Natálie";
+  if (den==22) return "Šimon";
+  if (den==23) return "Vlasta";
+  if (den==24) return "Adam a Eva";
+  if (den==25) return "Boží hod-1.svátek vánoční";
+  if (den==26) return "Štěpán";
+  if (den==27) return "Žaneta";
+  if (den==28) return "Bohumila";
+  if (den==29) return "Judita";
+  if (den==30) return "David";
+  if (den==31) return "Silvestr";
+  }
+	
+ }				
+
+function setTodayValue(obj){
+  // vrati aktulni datum ve formatu rok-mesic-den
+  ins = new Date();
+  day = ins.getDate();
+  month = ins.getMonth() + 1;
+  year = ins.getFullYear();
+  eval(obj).value = year + "-" + month + "-" + day;   
+}
+
+function post_xmlhttprequest(state_change, url, form, headers) {
+    var elements = form.elements;
+    var content = [];
+    for (var i=0; i < elements.length; i++) {
+        if (elements[i].attributes.name && elements[i].attributes.name.specified && !elements[i].disabled) {
+            if (/^(select)$/i.test(elements[i].tagName)) {
+                var options = elements[i].options;
+                for (var j=0; j < options.length; j++) {
+                    if (options[j].selected) {
+                        var value = (options[j].attributes.value && options[j].attributes.value.specified ? options[j].value : options[j].text);
+                        content.push(encodeURIComponent(elements[i].name) + '=' + encodeURIComponent(value));
+                    }
+                }
+            } else if (!/^(submit|reset|button|file|image)$/i.test(elements[i].type) && (!/^(radio|checkbox)$/i.test(elements[i].type) || elements[i].checked)) {
+                content.push(encodeURIComponent(elements[i].name) + '=' + encodeURIComponent(elements[i].value));
+            }
+        }
+    }
+    if (!headers) {
+        headers = {};
+    }
+    headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    return send_xmlhttprequest(state_change, 'POST', url, content.join('&'), headers);
+}
+
+
+function submitForm(formObject,statusBarObjectName,actionUrl) {        
+    if (statusBarObjectName.length>0) {
+      windowHeight = document.body.clientHeight;
+      windowWidth = document.body.clientWidth; 
+      document.getElementById(statusBarObjectName).style.left = Math.round(((windowWidth - 100)/2)) + "px";
+      if (windowHeight<=0) windowHeight = 75;
+      topPosition = ((windowHeight + window.scrollY - 75)/2);
+      topPosition = Math.round(topPosition);
+      document.getElementById(statusBarObjectName).style.top = topPosition + "px";          
+      document.getElementById(statusBarObjectName).style.display = 'block';
+      document.getElementById(statusBarObjectName).innerHTML = '<p class="nastred"><img src="http://gf.vw-cz.com/loading.gif" alt="Odesílá se" /><br />Odesílá se</p>';
+    }
+    return post_xmlhttprequest(function (xmlhttp) {
+        if (xmlhttp.readyState == 4) {
+            if (statusBarObjectName.length>0) {
+              document.getElementById(statusBarObjectName).innerHTML = '<p class="nastred">Odesláno.</p>';
+              document.getElementById(statusBarObjectName).style.display = 'none';
+            }
+        }
+    }, actionUrl, formObject);
+}
+
+function getFormString(formObject){    
+    var elements = formObject.elements;
+    var content = [];
+    var string = "";
+    for (var i=0; i < elements.length; i++) {
+        if (elements[i].attributes.name && elements[i].attributes.name.specified && !elements[i].disabled) {
+            if (/^(select)$/i.test(elements[i].tagName)) {
+                var options = elements[i].options;
+                for (var j=0; j < options.length; j++) {
+                    if (options[j].selected) {
+                        var value = (options[j].attributes.value && options[j].attributes.value.specified ? options[j].value : options[j].text);
+                        content.push(encodeURIComponent(elements[i].name) + '=' + encodeURIComponent(value));
+                    }
+                }
+            } else if (!/^(submit|reset|button|file|image)$/i.test(elements[i].type) && (!/^(radio|checkbox)$/i.test(elements[i].type) || elements[i].checked)) {
+                content.push(encodeURIComponent(elements[i].name) + '=' + encodeURIComponent(elements[i].value));
+            }
+        }
+    }
+    string = content.join('&');    
+    return string;
+} 
